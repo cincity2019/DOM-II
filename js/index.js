@@ -56,3 +56,18 @@ textChange.addEventListener('mouseover', (event) => {
 	textChange.style.transitionDuration = '3s';
 	textChange.style.color = 'lightpink';
 });
+function zoom(event) {
+	event.preventDefault();
+
+	scale += event.deltaY * -0.01;
+
+	// Restrict scale
+	scale = Math.min(Math.max(0.125, scale), 3);
+
+	// Apply scale transform
+	el.style.transform = `scale(${scale})`;
+}
+
+let scale = 1;
+const el = document.querySelector('header img');
+el.onwheel = zoom;
